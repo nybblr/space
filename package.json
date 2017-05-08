@@ -1,0 +1,26 @@
+{
+  "name": "space",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "./",
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "flexboxgrid": "^6.3.1",
+    "normalize.css": "^7.0.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router": "^3.0.5"
+  },
+  "devDependencies": {
+    "node-sass": "^4.5.2",
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "build-css": "node-sass --include-path node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass --include-path node_modules src/ -o src/ --watch --recursive",
+    "start": "NODE_PATH=src react-scripts start",
+    "build": "NODE_PATH=src react-scripts build",
+    "test": "NODE_PATH=src react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

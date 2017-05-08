@@ -1,0 +1,69 @@
+@import "normalize.css/normalize";
+@import "animate.css/animate";
+@import "flexboxgrid/dist/flexboxgrid";
+
+$background: #24262A;
+$green: #80FF9A;
+$red: #FF5E5E;
+$blue: #80BCFF;
+$gray: #66676D;
+$white: #FFFFFF;
+
+@mixin t-h1 {
+  font-family: 'Quicksand';
+  font-size: 60px;
+  font-weight: bold;
+}
+
+@mixin t-h2 {
+  font-family: 'Quicksand';
+  font-size: 36px;
+  font-weight: 500;
+}
+
+@mixin t-body {
+  font-family: 'Quicksand';
+  font-size: 24px;
+  font-weight: 500;
+}
+
+@mixin delay($count: 20, $duration: 200ms, $interval: 30ms) {
+  animation-duration: $duration;
+
+  @for $i from 1 to $count {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * $interval;
+    }
+  }
+
+  &:nth-child(n+#{$count}) {
+    animation-delay: $count * $interval;
+  }
+}
+
+.delayed {
+  @include delay($interval: 80ms);
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+html {
+  background-color: $background;
+}
+
+body {
+  @include t-body;
+  color: $white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.u-centered {
+  text-align: center;
+}
