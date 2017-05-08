@@ -1,0 +1,13 @@
+@mixin delay($count: 20, $duration: 200ms, $interval: 30ms) {
+  animation-duration: $duration;
+
+  @for $i from 1 to $count {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * $interval;
+    }
+  }
+
+  &:nth-child(n+#{$count}) {
+    animation-delay: $count * $interval;
+  }
+}

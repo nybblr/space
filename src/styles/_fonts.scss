@@ -1,0 +1,20 @@
+$icon-font: "FontAwesome";
+$body-font: "Proxima Nova";
+
+@mixin t-body {
+  font-family: $body-font;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+@mixin t-header {
+  font-family: $body-font;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@mixin t-aside {
+  font-family: $body-font;
+  font-size: 14px;
+  font-weight: 400;
+}
