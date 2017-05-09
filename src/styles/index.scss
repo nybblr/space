@@ -6,6 +6,8 @@
 @import "fonts";
 @import "mixins";
 
+@import "modules/canvas";
+
 .delayed {
   @include delay($interval: 80ms);
 }

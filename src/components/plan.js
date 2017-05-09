@@ -1,10 +1,14 @@
 import React from 'react';
 
-let Plan = ({ plan, removeItem }) =>
+import Item from './item';
+
+let Plan = ({ plan }) =>
   <div className="plan">
-    {plan.items.map(item =>
-      <span key={item.id} onClick={() => removeItem(item)}>{item.type}</span>
-    )}
+    <svg className="plan-canvas" width="100%" height="100%">
+      {plan.items.map(item =>
+        <Item key={item.id} item={item} />
+      )}
+    </svg>
   </div>
 
 export default Plan;
