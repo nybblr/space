@@ -4,22 +4,22 @@ export let plan = {
     w: 100,
     h: 50
   },
-  items: [
-    {
+  items: {
+    1: {
       id: 1,
       type: 'rect',
-      l: 4,
-      t: 4,
+      x: 4,
+      y: 4,
       w: 50,
       h: 25
     },
-    {
+    2: {
       id: 2,
       type: 'line',
-      ax: 4,
-      ay: 4,
+      x: 4,
+      y: 4,
       bx: 100,
       by: 50
     }
-  ]
+  }
 }
