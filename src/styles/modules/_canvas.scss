@@ -1,3 +1,16 @@
 .plan-canvas {
   display: block;
+
+  &:hover .item {
+    opacity: 0.5;
+  }
+
+  .item {
+    cursor: move;
+    transition: opacity 0.2s ease;
+
+    &:hover, &:active {
+      opacity: 1;
+    }
+  }
 }

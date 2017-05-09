@@ -31,6 +31,7 @@ class PlanIndex extends Component {
     let { plan } = this.state;
     return (
       <div className="route plan-index">
+        <nav className="picker">Pick from me!</nav>
         <Plan plan={plan} moveItem={this.moveItem} />
       </div>
     )

@@ -13,7 +13,7 @@ let NoMatch = () => <h1>404</h1>
 
 export default () =>
   <Router history={hashHistory}>
-    <Route path="/" component={App}>
+    <Route path="/">
       <Route path="plans">
         <Route path=":id" component={PlanIndex} />
       </Route>
