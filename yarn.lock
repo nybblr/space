@@ -2211,6 +2211,10 @@ firebase@^3.5.2:
     promise-polyfill "^6.0.2"
     xmlhttprequest "^1.8.0"
 
+firehoce@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/firehoce/-/firehoce-1.0.0.tgz#2ea3eb37a8c4fa27e3471e7aaa8b71baf1e6b000"
+
 flat-cache@^1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-1.2.2.tgz#fa86714e72c21db88601761ecf2f555d1abc6b96"

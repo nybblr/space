@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable';
 
 import { plan } from 'fixtures';
 
-import withFire from 'lib/firehoce';
+import withFire from 'firehoce';
 import db from 'database';
 
 let merge = src => target => ({ ...target, ...src });

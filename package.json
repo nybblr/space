@@ -6,6 +6,7 @@
   "dependencies": {
     "animate.css": "^3.5.2",
     "dexie": "^1.5.1",
+    "firehoce": "1.0.0",
     "flexboxgrid": "^6.3.1",
     "normalize.css": "^7.0.0",
     "re-base": "^2.7.0",
