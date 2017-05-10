@@ -7,7 +7,7 @@ export let plan = {
   items: {
     1: {
       id: 1,
-      type: 'rect',
+      type: 'rug',
       x: 4,
       y: 4,
       w: 50,
@@ -15,11 +15,9 @@ export let plan = {
     },
     2: {
       id: 2,
-      type: 'line',
+      type: 'lamp',
       x: 4,
-      y: 4,
-      bx: 100,
-      by: 50
+      y: 4
     }
   }
 }

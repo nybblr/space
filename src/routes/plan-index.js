@@ -4,8 +4,7 @@ import Immutable from 'seamless-immutable';
 
 import { plan } from 'fixtures';
 
-// let remove = item => array =>
-//   array.filter(curr => curr !== item);
+let merge = src => target => ({ ...target, ...src });
 
 class PlanIndex extends Component {
   constructor(props) {
@@ -15,15 +14,9 @@ class PlanIndex extends Component {
     }
   }
 
-  // removeItem = item => {
-  //   this.setState(state => Immutable.updateIn(
-  //     state, ['plan', 'items'], remove(item)
-  //   ));
-  // }
-
   moveItem = (item, pos) => {
     this.setState(state => Immutable.updateIn(
-      state, ['plan', 'items', item.id], item => ({ ...item, ...pos })
+      state, ['plan', 'items', item.id], merge(pos)
     ));
   }
 

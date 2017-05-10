@@ -2,10 +2,13 @@ import React from 'react';
 
 import draggable from 'lib/draggable';
 
-import rect from './items/rect';
-import line from './items/line';
+import rug from './items/rug';
+import lamp from './items/lamp';
 
-let components = { rect, line };
+let components = {
+  rug,
+  lamp
+};
 
 let Item = ({ item, move, dragStart }) => {
   let Component = components[item.type];
