@@ -3,52 +3,37 @@ import React, { Component } from 'react';
 let resolve = (val, ...args) =>
   typeof val === 'function' ? val(...args) : val;
 
-let readSources = (context, sources) => {
-  let initialState = {};
-  sources = resolve(sources, context.props, context.state);
-  let configs = Object.entries(sources).map(([state, source]) => {
-    let { initial, ...opts } = source;
-    initialState[state] = initial;
-    return { context, state, ...opts };
-  });
-  return { initialState, configs };
-};
-
-let createRefs = (rebase, configs) =>
-  configs.map(({ ref, setter, ...opts }) =>
-    rebase.syncState(ref, opts)
-  )
-
-let createSetters = (context, configs) =>
-  configs.reduce((setters, { setter, state }) => {
-    if (setter) {
-      setters[setter] = val =>
-        context.setState(({ [state]: curr }) => ({ [state]: resolve(val, curr) }))
-    }
-    return setters;
-  }, {})
-
-let removeRefs = (rebase, refs) =>
-  refs.map(ref => rebase.removeBinding(ref))
-
-export default (rebase, sources) => BaseComponent =>
+export default (state, setterName, rebase, opts, initial) => BaseComponent =>
   class Firehoce extends Component {
     constructor(...args) {
       super(...args);
-      let { initialState } = readSources(this, sources);
-      this.state = initialState;
+      this.state = { [state]: initial };
     }
 
     init() {
-      let { configs } = readSources(this, sources);
-      this.refs = createRefs(rebase, configs);
-      this.setters = createSetters(this, configs);
+      let { ref, ...config } = resolve(opts, this.props);
+      this.ref = rebase.syncState(ref, {
+        context: this,
+        state,
+        ...config
+      });
+      this.setter = val => {
+        let {[state]: curr} = this.state;
+        // Baaaaaad
+        this.setState({ [state]: resolve(val, curr) })
+      }
+      // Note: this doesn't work in Re-base <3!
+      // this.setter = val => {
+      //   this.setState(({ [state]: curr }) =>
+      //     ({ [state]: resolve(val, curr) }))
+      // }
     }
 
     deinit() {
-      removeRefs(rebase, this.refs);
-      this.refs = [];
-      this.setters = [];
+      console.log('deinit')
+      rebase.removeBinding(this.ref);
+      this.ref = null;
+      this.setter = null;
     }
 
     componentDidMount() {
@@ -65,10 +50,12 @@ export default (rebase, sources) => BaseComponent =>
     }
 
     render() {
-      return <BaseComponent
-        rebase={rebase}
-        {...this.setters}
-        {...this.state}
-        {...this.props} />
+      let { props, state, setter } = this;
+      let opts = {
+        rebase,
+        [setterName]: setter,
+        ...state, ...props
+      };
+      return <BaseComponent {...opts} />
     }
   }

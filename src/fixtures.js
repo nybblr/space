@@ -5,16 +5,16 @@ export let plan = {
     h: 50
   },
   items: {
-    1: {
-      id: 1,
+    k1: {
+      id: 'k1',
       type: 'rug',
       x: 150,
       y: 20,
       w: 50,
       h: 25
     },
-    2: {
-      id: 2,
+    k2: {
+      id: 'k2',
       type: 'lamp',
       x: 8,
       y: 300

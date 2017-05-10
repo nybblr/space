@@ -27,13 +27,12 @@ class PlanIndex extends Component {
   }
 }
 
-let enhance = withFire(db, {
-  plan: {
+let enhance = withFire(
+  'plan', 'setPlan', db, () => ({
     ref: `plan`,
     isNullable: true,
-    setter: 'setPlan',
-    initial: Immutable({items: {}})
-  }
-});
+  }),
+  Immutable({items: {}})
+);
 
 export default enhance(PlanIndex);
