@@ -4,16 +4,12 @@ import Immutable from 'seamless-immutable';
 
 import { plan } from 'fixtures';
 
-import firehoce from 'lib/firehoce';
+import withFire from 'lib/firehoce';
 import db from 'database';
 
 let merge = src => target => ({ ...target, ...src });
 
 class PlanIndex extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   moveItem = (item, pos) => {
     this.props.setPlan(plan => Immutable.updateIn(
       plan, ['items', item.id], merge(pos)
@@ -31,7 +27,7 @@ class PlanIndex extends Component {
   }
 }
 
-let enhance = firehoce(db, {
+let enhance = withFire(db, {
   plan: {
     ref: `plan`,
     isNullable: true,

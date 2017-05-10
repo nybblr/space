@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
+let resolve = (val, ...args) =>
+  typeof val === 'function' ? val(...args) : val;
+
 let readSources = (context, sources) => {
   let initialState = {};
-  if (typeof sources === 'function') {
-    sources = sources(context.props, context.state)
-  }
+  sources = resolve(sources, context.props, context.state);
   let configs = Object.entries(sources).map(([state, source]) => {
     let { initial, ...opts } = source;
     initialState[state] = initial;
@@ -22,7 +23,7 @@ let createSetters = (context, configs) =>
   configs.reduce((setters, { setter, state }) => {
     if (setter) {
       setters[setter] = val =>
-        context.setState(({ [state]: curr }) => ({ [state]: val(curr) }))
+        context.setState(({ [state]: curr }) => ({ [state]: resolve(val, curr) }))
     }
     return setters;
   }, {})
