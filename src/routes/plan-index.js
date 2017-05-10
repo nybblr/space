@@ -4,24 +4,24 @@ import Immutable from 'seamless-immutable';
 
 import { plan } from 'fixtures';
 
+import firehoce from 'lib/firehoce';
+import db from 'database';
+
 let merge = src => target => ({ ...target, ...src });
 
 class PlanIndex extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      plan: Immutable(plan)
-    }
   }
 
   moveItem = (item, pos) => {
-    this.setState(state => Immutable.updateIn(
-      state, ['plan', 'items', item.id], merge(pos)
+    this.props.setPlan(plan => Immutable.updateIn(
+      plan, ['items', item.id], merge(pos)
     ));
   }
 
   render() {
-    let { plan } = this.state;
+    let { plan } = this.props;
     return (
       <div className="route plan-index">
         <nav className="picker">Pick from me!</nav>
@@ -31,4 +31,13 @@ class PlanIndex extends Component {
   }
 }
 
-export default PlanIndex;
+let enhance = firehoce(db, {
+  plan: {
+    ref: `plan`,
+    isNullable: true,
+    setter: 'setPlan',
+    initial: Immutable({items: {}})
+  }
+});
+
+export default enhance(PlanIndex);

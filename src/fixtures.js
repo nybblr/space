@@ -8,16 +8,16 @@ export let plan = {
     1: {
       id: 1,
       type: 'rug',
-      x: 4,
-      y: 4,
+      x: 150,
+      y: 20,
       w: 50,
       h: 25
     },
     2: {
       id: 2,
       type: 'lamp',
-      x: 4,
-      y: 4
+      x: 8,
+      y: 300
     }
   }
 }
