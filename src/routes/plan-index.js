@@ -2,7 +2,7 @@ import React from 'react';
 import Plan from 'components/plan';
 
 import { createEventHandler } from 'recompose';
-import fuse from 'lib/redux-fusion';
+import fuse from 'redux-fusion';
 import itemActions from 'actions/item';
 
 let PlanIndex = ({ plan, moveItem }) =>

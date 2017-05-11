@@ -4533,7 +4533,7 @@ react-scripts@0.9.5:
   optionalDependencies:
     fsevents "1.0.17"
 
-react@^15.5.4:
+react@^15.4.2, react@^15.5.4:
   version "15.5.4"
   resolved "https://registry.yarnpkg.com/react/-/react-15.5.4.tgz#fa83eb01506ab237cdc1c8c3b1cea8de012bf047"
   dependencies:
@@ -4601,7 +4601,7 @@ rechoir@^0.6.2:
   dependencies:
     resolve "^1.1.6"
 
-recompose@^0.23.1:
+"recompose@>= 0.22.0", recompose@^0.23.1:
   version "0.23.1"
   resolved "https://registry.yarnpkg.com/recompose/-/recompose-0.23.1.tgz#577613e24a7ff56f9ca6b899190f8a9c0857fc20"
   dependencies:
@@ -4655,6 +4655,14 @@ redux-actions@^2.0.3:
     lodash "^4.13.1"
     lodash-es "^4.17.4"
     reduce-reducers "^0.1.0"
+
+redux-fusion@cif/redux-fusion:
+  version "0.1.8"
+  resolved "https://codeload.github.com/cif/redux-fusion/tar.gz/27e58d3386485ee4518d990c8721ec691a81e7f3"
+  dependencies:
+    react "^15.4.2"
+    recompose ">= 0.22.0"
+    rxjs "^5.2.0"
 
 redux@^3.6.0:
   version "3.6.0"
@@ -4843,7 +4851,7 @@ rx-lite@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-3.1.2.tgz#19ce502ca572665f3b647b10939f97fd1615f102"
 
-rxjs@^5.4.0:
+rxjs@^5.2.0, rxjs@^5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.4.0.tgz#a7db14ab157f9d7aac6a56e655e7a3860d39bf26"
   dependencies:

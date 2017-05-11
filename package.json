@@ -17,6 +17,7 @@
     "recompose": "^0.23.1",
     "redux": "^3.6.0",
     "redux-actions": "^2.0.3",
+    "redux-fusion": "cif/redux-fusion",
     "rxjs": "^5.4.0",
     "seamless-immutable": "^7.1.2"
   },
