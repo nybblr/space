@@ -1,9 +1,9 @@
 import React from 'react';
-import Plan from 'components/plan';
-
-import { createEventHandler } from 'recompose';
 import fuse from 'redux-fusion';
+
+import Plan from 'components/plan';
 import itemActions from 'actions/item';
+import bindAction from 'lib/bind-action';
 
 let PlanIndex = ({ plan, moveItem }) =>
   <div className="route plan-index">
@@ -12,18 +12,12 @@ let PlanIndex = ({ plan, moveItem }) =>
   </div>
 
 let props$ = (state$, dispatch) => props$ => {
-  let {
-    handler: moveItem,
-    stream: moveItem$
-  } = createEventHandler();
+  let moveItem = bindAction(dispatch, itemActions.move);
 
-  moveItem$
-    .subscribe(val => dispatch(itemActions.move(val)));
-
-  let mapStateToProps = state$
+  let stateToProps$ = state$
     .pluck('plan')
 
-  return props$.combineLatest(mapStateToProps, (props, plan) => ({
+  return props$.combineLatest(stateToProps$, (props, plan) => ({
     plan,
     moveItem,
     ...props

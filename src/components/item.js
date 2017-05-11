@@ -25,7 +25,10 @@ let Item = ({ item, move, dragStart }) => {
   )
 }
 
-let enhance = draggable(({ item: {x, y}, move }, { ddx, ddy }) => {
+let enhance = draggable((
+  { item: {x, y}, move },
+  { ddx, ddy }
+) => {
   move(x + ddx, y + ddy);
 });
 
