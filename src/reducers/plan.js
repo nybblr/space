@@ -1,14 +1,11 @@
 import { handleActions } from 'redux-actions';
 import Immutable, {
-  updateIn,
-  without
+  updateIn
 } from 'seamless-immutable';
 
 import itemActions from 'actions/item';
 import { plan as initialState } from 'fixtures';
-
-let merge = src => target => ({ ...target, ...src });
-let omit = src => target => without(target, src);
+import { merge, omit } from 'lib/object';
 
 export default handleActions({
   [itemActions.move]: (plan, { payload: { item, x, y } }) =>
