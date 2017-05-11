@@ -6,7 +6,6 @@ import {
   hashHistory
 } from 'react-router';
 
-import App from 'components/app';
 import PlanIndex from 'routes/plan-index';
 
 let NoMatch = () => <h1>404</h1>

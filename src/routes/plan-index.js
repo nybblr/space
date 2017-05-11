@@ -1,38 +1,35 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Plan from 'components/plan';
-import Immutable from 'seamless-immutable';
 
-import { plan } from 'fixtures';
+import { createEventHandler } from 'recompose';
+import fuse from 'lib/redux-fusion';
+import itemActions from 'actions/item';
 
-import withFire from 'firehoce';
-import db from 'database';
+let PlanIndex = ({ plan, moveItem }) =>
+  <div className="route plan-index">
+    <nav className="picker">Pick from me!</nav>
+    <Plan plan={plan} moveItem={moveItem} />
+  </div>
 
-let merge = src => target => ({ ...target, ...src });
+let props$ = (state$, dispatch) => props$ => {
+  let {
+    handler: moveItem,
+    stream: moveItem$
+  } = createEventHandler();
 
-class PlanIndex extends Component {
-  moveItem = (item, pos) => {
-    this.props.setPlan(plan => Immutable.updateIn(
-      plan, ['items', item.id], merge(pos)
-    ));
-  }
+  moveItem$
+    .subscribe(val => dispatch(itemActions.move(val)));
 
-  render() {
-    let { plan } = this.props;
-    return (
-      <div className="route plan-index">
-        <nav className="picker">Pick from me!</nav>
-        <Plan plan={plan} moveItem={this.moveItem} />
-      </div>
-    )
-  }
+  let mapStateToProps = state$
+    .pluck('plan')
+
+  return props$.combineLatest(mapStateToProps, (props, plan) => ({
+    plan,
+    moveItem,
+    ...props
+  }))
 }
 
-let enhance = withFire(
-  'plan', 'setPlan', db, () => ({
-    ref: `plan`,
-    isNullable: true,
-  }),
-  Immutable({items: {}})
-);
+let enhance = fuse(props$);
 
 export default enhance(PlanIndex);
