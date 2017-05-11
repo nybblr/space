@@ -1,5 +1,6 @@
 import React from 'react';
 import fuse from 'redux-fusion';
+import { combineLatest } from 'rxjs/observable/combineLatest';
 
 import Plan from 'components/plan';
 import itemActions from 'actions/item';
@@ -14,14 +15,15 @@ let PlanIndex = ({ plan, moveItem }) =>
 let props$ = (state$, dispatch) => props$ => {
   let moveItem = bindAction(dispatch, itemActions.move);
 
-  let stateToProps$ = state$
+  let plan$ = state$
     .pluck('plan')
 
-  return props$.combineLatest(stateToProps$, (props, plan) => ({
-    plan,
-    moveItem,
-    ...props
-  }))
+  return combineLatest(
+    props$, plan$,
+    (props, plan) => ({
+      moveItem, plan, ...props
+    })
+  )
 }
 
 let enhance = fuse(props$);
