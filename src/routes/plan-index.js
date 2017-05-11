@@ -4,7 +4,7 @@ import { combineLatest } from 'rxjs/observable/combineLatest';
 
 import Plan from 'components/plan';
 import itemActions from 'actions/item';
-import bindAction from 'lib/bind-action';
+import { bindAction } from 'lib/reactive-actions';
 
 let PlanIndex = ({ plan, moveItem }) =>
   <div className="route plan-index">
