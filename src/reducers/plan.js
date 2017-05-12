@@ -5,15 +5,15 @@ import Immutable, {
 
 import itemActions from 'actions/item';
 import { plan as initialState } from 'fixtures';
-import { merge, omit } from 'lib/object';
+import { __, merge, without } from 'ramda';
 
 export default handleActions({
   [itemActions.move]: (plan, { payload: { item, x, y } }) =>
     updateIn(
-      plan, ['items', item.id], merge({ x, y })
+      plan, ['items', item.id], merge(__, { x, y })
     ),
   [itemActions.remove]: (plan, { payload: { item } }) =>
     updateIn(
-      plan, ['items'], omit(item.id)
+      plan, ['items'], without(item.id)
     )
 }, Immutable(initialState));
